@@ -1,7 +1,24 @@
 [project]
-name = "vessel-judge"
+name = "upr-rank"
 version = "0.1.0"
-description = "Add your description here"
+description = "Juez en Linea (Online Judge) para la Universidad de Pin del Rio"
 readme = "README.md"
-requires-python = ">=3.14"
+requires-python = ">=3.11"
 dependencies = []
+
+[tool.ruff]
+target-version = "py311"
+line-length = 88
+src = ["apps/backend_core/src", "apps/judge_worker/src"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "UP", "B", "A", "SIM"]
+
+[tool.black]
+target-version = ["py311"]
+line-length = 88
+
+[tool.pytest.ini_options]
+testpaths = ["apps/backend_core/tests", "apps/judge_worker/tests"]
+asyncio_mode = "auto"
+addopts = "-v --tb=short"
