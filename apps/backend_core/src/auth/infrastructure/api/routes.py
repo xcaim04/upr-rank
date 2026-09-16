@@ -4,13 +4,14 @@ from __future__ import annotations
 
 from uuid import UUID
 
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Security
 from sqlalchemy.orm import Session
 from src.auth.application.dtos import LoginInput, RefreshInput, RegisterInput
 from src.auth.application.errors import InvalidTokenError
 from src.auth.application.ports import TokenProvider
 from src.auth.application.use_cases import LoginUser, RegisterUser
 from src.auth.domain.entities import TokenType
+from src.auth.infrastructure.api.dependencies import get_current_user
 from src.auth.infrastructure.api.schemas import AuthResponse, TokenResponse, UserOut
 from src.auth.infrastructure.jwt_token_service import JWTTokenProvider
 from src.auth.infrastructure.password_hasher import BcryptPasswordHasher
@@ -79,3 +80,14 @@ def refresh_token(data: RefreshInput, db: Session = Depends(get_db)) -> TokenRes
         raise InvalidTokenError()
     access = provider.create_access_token(user_id=str(user.id), role=user.role.value)
     return TokenResponse(access_token=access)
+
+
+@router.get(
+    "/me",
+    response_model=UserOut,
+    summary="Get the current authenticated user",
+    description="Returns the profile of the user owning the presented access token.",
+    responses={401: {"description": "Missing, invalid or expired token"}},
+)
+def get_me(current_user: User = Security(get_current_user)) -> UserOut:
+    return UserOut.from_domain(current_user)
