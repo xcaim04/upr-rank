@@ -9,6 +9,12 @@ from __future__ import annotations
 from pydantic import BaseModel, EmailStr, Field, field_validator
 
 
+class RefreshInput(BaseModel):
+    """Payload for rotating an access token from a refresh token."""
+
+    refresh_token: str = Field(min_length=10, description="Valid refresh token")
+
+
 class RegisterInput(BaseModel):
     """Payload for creating a new student account."""
 

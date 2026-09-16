@@ -14,6 +14,7 @@ extend-exclude = ["apps/backend_core/alembic/versions"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "N", "UP", "B", "A", "SIM"]
+extend-ignore = ["B008"]
 
 [tool.black]
 target-version = ["py311"]

@@ -2,7 +2,9 @@
 
 from fastapi import FastAPI
 
+from src.auth.infrastructure.api.routes import router as auth_router
 from src.shared.config import settings
+from src.shared.infrastructure.api.errors import register_error_handlers
 from src.shared.infrastructure.api.health import router as health_router
 
 
@@ -15,6 +17,9 @@ def create_app() -> FastAPI:
     )
 
     application.include_router(health_router)
+    application.include_router(auth_router)
+
+    register_error_handlers(application)
 
     return application
 
