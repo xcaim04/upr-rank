@@ -8,3 +8,4 @@ pydantic-settings==2.5.2
 redis==5.0.8
 passlib[bcrypt]==1.7.4
 bcrypt==4.0.1
+pyjwt==2.9.0
