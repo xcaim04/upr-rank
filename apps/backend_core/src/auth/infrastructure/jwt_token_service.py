@@ -10,7 +10,6 @@ from __future__ import annotations
 from datetime import UTC, datetime, timedelta
 
 import jwt
-
 from src.auth.application.errors import ExpiredTokenError, InvalidTokenError
 from src.auth.application.ports import TokenPayload, TokenProvider
 from src.auth.domain.entities import TokenType
