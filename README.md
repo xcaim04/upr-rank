@@ -118,3 +118,10 @@ npm run typecheck
 
 El desarrollo avanza por sprints (ver `docs/roadmap.md`). Cada sprint entrega una
 funcionalidad completa y verificable.
+
+**Sprint 0 — Fundación: completo.** Monorepo con `apps/backend_core`,
+`apps/judge_worker`, `apps/frontend_web` y `packages/shared-contracts`; FastAPI
+con endpoint `/health`; SQLAlchemy conectado a PostgreSQL; Alembic configurado
+(se aplican migraciones en el arranque del contenedor); `docker compose up`
+levanta PostgreSQL + Redis + backend. Próximo: Sprint 1 (autenticación y
+usuarios).
