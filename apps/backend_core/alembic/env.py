@@ -8,9 +8,11 @@ from logging.config import fileConfig
 
 from alembic import context
 from sqlalchemy import engine_from_config, pool
-
 from src.shared.config import settings
 from src.shared.infrastructure.database import Base
+
+# Import ORM models so autogenerate can detect new tables.
+from src.user.infrastructure.models import UserModel  # noqa: F401
 
 # Alembic Config object, which provides access to alembic.ini values.
 config = context.config

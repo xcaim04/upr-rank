@@ -10,6 +10,7 @@ dependencies = []
 target-version = "py311"
 line-length = 88
 src = ["apps/backend_core/src", "apps/judge_worker/src"]
+extend-exclude = ["apps/backend_core/alembic/versions"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "N", "UP", "B", "A", "SIM"]
