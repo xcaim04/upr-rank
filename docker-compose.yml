@@ -33,7 +33,7 @@ services:
       DATABASE_URL: postgresql+psycopg2://upr_rank:upr_rank@postgres:5432/upr_rank
       REDIS_URL: redis://redis:6379/0
     ports:
-      - "8000:8000"
+      - "8001:8000"
     depends_on:
       postgres:
         condition: service_healthy

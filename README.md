@@ -63,11 +63,11 @@ Cada módulo de dominio del backend sigue arquitectura hexagonal:
 3. Verifica que el backend responde:
 
    ```bash
-   curl http://localhost:8000/health
+   curl http://localhost:8001/health
    # {"status":"ok","service":"upr-rank-backend"}
    ```
 
-   Documentación interactiva de la API: http://localhost:8000/docs
+   Documentación interactiva de la API: http://localhost:8001/docs
 
 ## Desarrollo local
 
