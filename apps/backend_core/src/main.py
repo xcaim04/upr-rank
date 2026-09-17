@@ -6,6 +6,7 @@ from src.auth.infrastructure.api.routes import router as auth_router
 from src.shared.config import settings
 from src.shared.infrastructure.api.errors import register_error_handlers
 from src.shared.infrastructure.api.health import router as health_router
+from src.user.infrastructure.api.routes import router as user_router
 
 
 def create_app() -> FastAPI:
@@ -18,6 +19,7 @@ def create_app() -> FastAPI:
 
     application.include_router(health_router)
     application.include_router(auth_router)
+    application.include_router(user_router)
 
     register_error_handlers(application)
 
