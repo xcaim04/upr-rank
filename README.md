@@ -69,6 +69,33 @@ Cada módulo de dominio del backend sigue arquitectura hexagonal:
 
    Documentación interactiva de la API: http://localhost:8001/docs
 
+### Endpoints de autenticación
+
+```bash
+# Registro de un alumno (devuelve par de tokens)
+curl -X POST http://localhost:8001/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{"email":"student@upr.edu.cu","username":"juanito","full_name":"Juan Pérez","password":"s3cret-pass"}'
+
+# Login
+curl -X POST http://localhost:8001/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"email":"student@upr.edu.cu","password":"s3cret-pass"}'
+
+# Perfil del usuario autenticado
+curl http://localhost:8001/auth/me \
+  -H "Authorization: Bearer <access_token>"
+
+# Refresh del access token
+curl -X POST http://localhost:8001/auth/refresh \
+  -H "Content-Type: application/json" \
+  -d '{"refresh_token":"<refresh_token>"}'
+
+# Listado de usuarios (solo administradores)
+curl http://localhost:8001/users \
+  -H "Authorization: Bearer <access_token>"
+```
+
 ## Desarrollo local
 
 ### Backend
