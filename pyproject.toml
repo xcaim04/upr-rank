@@ -22,5 +22,5 @@ line-length = 88
 
 [tool.pytest.ini_options]
 testpaths = ["apps/backend_core/tests", "apps/judge_worker/tests"]
-asyncio_mode = "auto"
 addopts = "-v --tb=short"
+markers = ["unit: fast isolated tests without external services"]

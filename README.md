@@ -123,5 +123,11 @@ funcionalidad completa y verificable.
 `apps/judge_worker`, `apps/frontend_web` y `packages/shared-contracts`; FastAPI
 con endpoint `/health`; SQLAlchemy conectado a PostgreSQL; Alembic configurado
 (se aplican migraciones en el arranque del contenedor); `docker compose up`
-levanta PostgreSQL + Redis + backend. Próximo: Sprint 1 (autenticación y
-usuarios).
+levanta PostgreSQL + Redis + backend.
+
+**Sprint 1 — Autenticación y usuarios: completo.** Registro, login, refresh y
+perfil (`/auth/register`, `/auth/login`, `/auth/refresh`, `/auth/me`) con
+contraseñas bcrypt y tokens JWT (access + refresh); RBAC por roles
+(alumno/profesor/admin); listado de usuarios restringido (`GET /users`, solo
+admin). Migración de la tabla `users` incluida. Próximo: Sprint 2 (gestión de
+problemas).
