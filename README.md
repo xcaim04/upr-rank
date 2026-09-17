@@ -5,7 +5,9 @@ Montes de Oca" (Cuba). Plataforma para la práctica y evaluación de problemas
 algorítmicos, con soporte de concursos estilo ICPC/IOI, desarrollada como tesis de
 grado en Ingeniería Informática.
 
-*Dedicatoria: "En honor a Ali Landeiro Góngora"*
+## Dedicatoria
+
+> **En honor a Ali Landeiro Góngora.**
 
 ## Stack tecnológico
 
@@ -94,6 +96,36 @@ curl -X POST http://localhost:8001/auth/refresh \
 # Listado de usuarios (solo administradores)
 curl http://localhost:8001/users \
   -H "Authorization: Bearer <access_token>"
+
+# Crear un problema (profesor o admin; slug opcional, se deriva del título)
+curl -X POST http://localhost:8001/problems \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer <access_token>" \
+  -d '{
+        "title": "Suma de dos números",
+        "statement": "Dados dos enteros, calcula su suma.",
+        "difficulty": "easy",
+        "time_limit_ms": 1000,
+        "memory_limit_mb": 256
+      }'
+
+# Listar problemas (los alumnos solo ven los publicados)
+curl http://localhost:8001/problems \
+  -H "Authorization: Bearer <access_token>"
+
+# Ver un problema por id
+curl http://localhost:8001/problems/<problem_id> \
+  -H "Authorization: Bearer <access_token>"
+
+# Actualizar un problema propio (profesor) o cualquiera (admin)
+curl -X PATCH http://localhost:8001/problems/<problem_id> \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer <access_token>" \
+  -d '{"is_visible": true}'
+
+# Eliminar un problema (solo admin)
+curl -X DELETE http://localhost:8001/problems/<problem_id> \
+  -H "Authorization: Bearer <access_token>"
 ```
 
 ## Desarrollo local
@@ -156,5 +188,12 @@ levanta PostgreSQL + Redis + backend.
 perfil (`/auth/register`, `/auth/login`, `/auth/refresh`, `/auth/me`) con
 contraseñas bcrypt y tokens JWT (access + refresh); RBAC por roles
 (alumno/profesor/admin); listado de usuarios restringido (`GET /users`, solo
-admin). Migración de la tabla `users` incluida. Próximo: Sprint 2 (gestión de
-problemas).
+admin). Migración de la tabla `users` incluida.
+
+**Sprint 2 — Gestión de problemas: completo.** CRUD de problemas
+(`POST/GET/PATCH/DELETE /problems`) con slug auto-generado desde el título
+(opcional en la petición), dificultad (easy/medium/hard), límites de tiempo y
+memoria, y visibilidad. RBAC: crear y editar solo profesores/admins (los
+profesores solo editan problemas propios), eliminar solo admins; los alumnos
+solo ven problemas publicados. Migración de la tabla `problems` incluida.
+Próximo: Sprint 3 (envíos y worker).

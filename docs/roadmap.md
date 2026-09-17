@@ -6,7 +6,7 @@ Estado del desarrollo por sprints.
 | ------ | -------------------------------------- | --------- |
 | 0      | Fundación: monorepo, infra, FastAPI    | Completo   |
 | 1      | Autenticación y usuarios               | Completo   |
-| 2      | Gestión de problemas                   | Pendiente |
+| 2      | Gestión de problemas                   | Completo   |
 | 3      | Envíos y worker (sandbox)              | Pendiente |
 | 4      | Historial y concursos                  | Pendiente |
 | 5      | Frontend web                           | Pendiente |
